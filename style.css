@@ -1,59 +1,67 @@
+/* General Styling */
 body {
     font-family: 'Open Sans', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
-    color: #333;
+    background-color: #0a0f1e;
+    color: #d1d5db;
+    display: flex;
 }
 
-header {
-    background: #004080;
+/* Sidebar Profile */
+.sidebar {
+    background: #121826;
     color: white;
-    padding: 15px;
-    text-align: center;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    text-align: center;
-}
-
-nav ul li {
-    display: inline;
-    margin: 10px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-section {
+    width: 300px;
+    height: 100vh;
     padding: 20px;
-    margin: 10px auto;
-    width: 80%;
-    background: white;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: fixed;
+}
+
+.sidebar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.sidebar h2 {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.sidebar .btn {
+    background: #00aaff;
+    color: white;
+    padding: 10px;
+    display: inline-block;
+    text-decoration: none;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.sidebar .social-links a {
+    display: block;
+    color: #00aaff;
+    margin: 5px 0;
+}
+
+/* Main Content */
+main {
+    margin-left: 320px;
+    padding: 40px;
+    width: calc(100% - 320px);
 }
 
 h2 {
-    color: #004080;
+    color: #00aaff;
 }
 
-.button {
-    background-color: #004080;
-    color: white;
-    padding: 10px 15px;
-    text-decoration: none;
-    border-radius: 5px;
-    display: inline-block;
-}
-
-footer {
-    text-align: center;
-    padding: 10px;
-    background: #222;
-    color: white;
+/* Skills Section */
+.skill-card {
+    background: #1a2333;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 10px 0;
 }
