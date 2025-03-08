@@ -13,10 +13,10 @@ header {
 }
 
 nav ul {
-    background: #444;
-    padding: 10px;
-    text-align: center;
     list-style: none;
+    padding: 0;
+    text-align: center;
+    background: #444;
 }
 
 nav ul li {
@@ -29,10 +29,39 @@ nav ul li a {
     text-decoration: none;
 }
 
-section {
-    padding: 20px;
+.about {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
     max-width: 900px;
     margin: auto;
+}
+
+.profile-container {
+    flex: 1;
+    text-align: center;
+}
+
+.profile-pic {
+    width: 200px;
+    height: auto;
+    border-radius: 50%;
+    border: 3px solid #333;
+}
+
+.bio {
+    flex: 2;
+    padding-left: 20px;
+}
+
+h2, h3 {
+    color: #333;
+}
+
+ul {
+    list-style-type: square;
+    padding-left: 20px;
 }
 
 footer {
