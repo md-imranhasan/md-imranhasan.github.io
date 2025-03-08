@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications - Md. Imran Hasan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="navbar"></div>
+
+    <section id="publications">
+        <h2>Publications</h2>
+        <ul>
+            <li><a href="https://doi.org/10.1007/s13721-023-00421-6">Galangin for COVID-19 and Mucormycosis co-infection</a></li>
+            <li><a href="https://doi.org/10.1371/journal.pone.0265746">Bioinformatics approaches for cancers linked to infertility</a></li>
+        </ul>
+    </section>
+
+    <div id="footer"></div>
+
+    <script>
+        document.getElementById("navbar").innerHTML = fetch("navbar.html").then(res => res.text()).then(text => document.getElementById("navbar").innerHTML = text);
+        document.getElementById("footer").innerHTML = fetch("footer.html").then(res => res.text()).then(text => document.getElementById("footer").innerHTML = text);
+    </script>
+
+</body>
+</html>
