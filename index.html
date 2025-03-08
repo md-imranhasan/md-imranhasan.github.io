@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Md. Imran Hasan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div id="navbar"></div>
+
+    <header>
+        <h1>Md. Imran Hasan</h1>
+        <p>Computational Biology & Bioinformatics Researcher</p>
+    </header>
+
+    <section class="intro">
+        <img src="profile.jpg" alt="Md. Imran Hasan" class="profile-pic">
+        <p>
+            I am a Computational Biology & Bioinformatics researcher, currently pursuing my Master of Science in Life Sciences at 
+            Texas A&M University – San Antonio, USA.
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <script>
+        // Load navbar and footer dynamically
+        document.getElementById("navbar").innerHTML = fetch("navbar.html").then(res => res.text()).then(text => document.getElementById("navbar").innerHTML = text);
+        document.getElementById("footer").innerHTML = fetch("footer.html").then(res => res.text()).then(text => document.getElementById("footer").innerHTML = text);
+    </script>
+</body>
+</html>
