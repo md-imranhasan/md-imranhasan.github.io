@@ -1,91 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Md. Imran Hasan</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width">
+  <title>Md. Imran Hasan</title>
 
-    <link rel="stylesheet" href="style.css">
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
+  <main>
     <!-- Sidebar -->
     <aside class="sidebar">
-        <div class="sidebar-info">
-            <img class="avatar-box" src="profile.jpg" alt="Md. Imran Hasan">
-            <h1 class="name">Md. Imran Hasan</h1>
-            <p class="title">Computational Biology & Bioinformatics Researcher</p>
+      <div class="sidebar-info">
+        <img class="avatar-box" src="profile.jpg" alt="Md. Imran Hasan">
+        <div class="info-content">
+          <h1 class="name">Md. Imran Hasan</h1>
+          <p class="title">M.S. Life Sciences @ Texas A&M</p>
+          <a href="cv.pdf" target="_blank"><button class="title" id="ResumeBtn">Resume</button></a>
         </div>
+      </div>
 
-        <!-- Navigation -->
-        <nav class="navbar">
-            <ul>
-                <li><button class="navbar-link active" data-nav-link="home">Home</button></li>
-                <li><button class="navbar-link" data-nav-link="about">About</button></li>
-                <li><button class="navbar-link" data-nav-link="publications">Publications</button></li>
-                <li><button class="navbar-link" data-nav-link="research">Research</button></li>
-                <li><button class="navbar-link" data-nav-link="skills">Skills</button></li>
-                <li><button class="navbar-link" data-nav-link="contact">Contact</button></li>
-            </ul>
-        </nav>
+      <ul class="social-list">
+        <li><a href="https://github.com/md-imranhasan"><ion-icon name="logo-github"></ion-icon></a></li>
+        <li><a href="https://www.linkedin.com/in/ihasanbio/"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+        <li><a href="https://www.researchgate.net/profile/Md-Hasan-620"><ion-icon name="logo-researchgate"></ion-icon></a></li>
+      </ul>
+
+      <ul class="contacts-list">
+        <li>Email: <a href="mailto:imranhasaniucse@gmail.com">imranhasaniucse@gmail.com</a></li>
+        <li>Location: San Antonio, Texas, USA</li>
+      </ul>
     </aside>
 
     <!-- Main Content -->
     <div class="main-content">
+      <nav class="navbar">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#publications">Publications</a></li>
+        </ul>
+      </nav>
 
-        <!-- Home Section -->
-        <section class="section active" id="home">
-            <h2>Welcome to My Website</h2>
-            <p>I am a Computational Biology & Bioinformatics researcher, currently pursuing a Master's in Life Sciences at Texas A&M University – San Antonio.</p>
-        </section>
+      <section id="about">
+        <h2>About Me</h2>
+        <p>Master of Science (M.S.) in Life Sciences at Texas A&M University – San Antonio.</p>
+      </section>
 
-        <!-- About Section -->
-        <section class="section" id="about">
-            <h2>About Me</h2>
-            <p>I specialize in computational drug discovery, systems biology, and bioinformatics-driven research on diseases.</p>
-            <h3>Education</h3>
-            <ul>
-                <li>📌 M.S. in Life Sciences – Texas A&M University (Ongoing)</li>
-                <li>📌 B.Sc. in Computer Science & Engineering – Islamic University, Bangladesh</li>
-            </ul>
-        </section>
+      <section id="experience">
+        <h2>Experience</h2>
+        <p>Research Assistant at Texas A&M University - San Antonio.</p>
+      </section>
 
-        <!-- Publications Section -->
-        <section class="section" id="publications">
-            <h2>Publications</h2>
-            <ul>
-                <li>📄 <a href="https://doi.org/10.1007/s13721-023-00421-6" target="_blank">Galangin for COVID-19 and Mucormycosis Co-Infection (Springer)</a></li>
-                <li>📄 <a href="https://doi.org/10.1371/journal.pone.0265746" target="_blank">Bioinformatics approaches to identify biomarkers for cancers (PLOS ONE)</a></li>
-                <li>📄 <a href="https://doi.org/10.1155/2022/5269913" target="_blank">Automated Detection of Colon Cancer (Journal of Healthcare Engineering)</a></li>
-            </ul>
-        </section>
+      <section id="education">
+        <h2>Education</h2>
+        <p>B.Sc. in Computer Science & Engineering from Islamic University, Bangladesh.</p>
+      </section>
 
-        <!-- Research Section -->
-        <section class="section" id="research">
-            <h2>Research Experience</h2>
-            <p>Researching antimicrobial resistance mechanisms in Staphylococcus aureus at Texas A&M University.</p>
-        </section>
+      <section id="projects">
+        <h2>Projects</h2>
+        <p>Developing bioinformatics-driven computational tools for molecular research.</p>
+      </section>
 
-        <!-- Skills Section -->
-        <section class="section" id="skills">
-            <h2>Technical Skills</h2>
-            <p>💻 Programming: Python, R, C++, SQL, HTML/CSS</p>
-            <p>🧬 Bioinformatics Tools: Schrodinger Suite, AutoDock Vina, Cytoscape</p>
-        </section>
+      <section id="research">
+        <h2>Research</h2>
+        <p>Working on antimicrobial resistance in Staphylococcus aureus.</p>
+      </section>
 
-        <!-- Contact Section -->
-        <section class="section" id="contact">
-            <h2>Contact</h2>
-            <p>📧 Email: <a href="mailto:imranhasaniucse@gmail.com">imranhasaniucse@gmail.com</a></p>
-            <p>🔗 <a href="https://www.linkedin.com/in/ihasanbio/" target="_blank">LinkedIn</a></p>
-            <p>🔗 <a href="https://www.researchgate.net/profile/Md-Hasan-620" target="_blank">ResearchGate</a></p>
-        </section>
-
+      <section id="publications">
+        <h2>Publications</h2>
+        <ul>
+          <li><a href="https://doi.org/10.1007/s13721-023-00421-6">Galangin for COVID-19 and Mucormycosis</a></li>
+          <li><a href="https://doi.org/10.1371/journal.pone.0265746">Bioinformatics approaches to identify biomarkers</a></li>
+          <li><a href="https://doi.org/10.1155/2022/5269913">Automated Detection of Colon Cancer</a></li>
+        </ul>
+      </section>
     </div>
+  </main>
 
-    <script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
