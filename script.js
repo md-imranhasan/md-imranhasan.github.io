@@ -1,16 +1,13 @@
-'use strict';
-
-// Function to toggle sections
-const sections = document.querySelectorAll(".section");
-const navLinks = document.querySelectorAll("[data-nav-link]");
-
-navLinks.forEach(link => {
-    link.addEventListener("click", function () {
-        sections.forEach(section => section.classList.remove("active"));
-        navLinks.forEach(nav => nav.classList.remove("active"));
-
-        document.getElementById(this.getAttribute("data-nav-link")).classList.add("active");
-        this.classList.add("active");
-        window.scrollTo(0, 0);
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".navbar ul li a").forEach(link => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute("href").substring(1);
+      document.getElementById(targetId).scrollIntoView({ behavior: "smooth" });
     });
+  });
+
+  document.getElementById("ResumeBtn").addEventListener("click", function () {
+    window.open("cv.pdf", "_blank");
+  });
 });
