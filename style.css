@@ -128,8 +128,11 @@ header h1 {
 /* Contact Section */
 .contact-section {
   background: #f8f9fa;
-  padding: 50px;
-  text-align: center;
+  padding: 50px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .quote {
@@ -145,9 +148,9 @@ header h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 40px;
   max-width: 900px;
-  margin: 0 auto;
+  margin: 20px;
   background: white;
   padding: 30px;
   border-radius: 8px;
@@ -164,12 +167,14 @@ header h1 {
 
 /* Contact Info */
 .contact-info {
+   flex: 1; 
   text-align: left;
 }
 
 .contact-info h2 {
   font-size: 20px;
   color: #0056b3;
+  margin-bottom: 10px;
 }
 
 .contact-info p {
@@ -185,7 +190,7 @@ header h1 {
 
 .social-icons img {
   width: 30px;
-  margin: 5px;
+  margin: 8px;
   transition: transform 0.3s ease-in-out;
 }
 
