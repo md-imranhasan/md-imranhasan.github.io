@@ -98,6 +98,18 @@ h1, h2, h3, h4 {
 .gallery img:hover {
   transform: scale(1.05);
 }
+/* Ensure h1 is visible and above other elements */
+header h1 {
+  position: relative;
+  z-index: 10; /* Ensures text is above other elements */
+}
+
+/* Responsive Font Size for Mobile */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 20px;
+  }
+}
 
 /* Footer */
 footer {
