@@ -49,7 +49,20 @@ nav ul li a:hover {
   background: #0056b3;
   border-radius: 5px;
 }
-
+/* Special Styling for the CV Link */
+nav ul li a[download] {
+  font-weight: 600; /* Make CV link bold */
+  background: #f8c102; /* A gold/yellow button style */
+  color: #002855; /* Dark blue text */
+  padding: 8px 15px; /* More padding to look like a button */
+  border-radius: 5px; /* Rounded corners */
+  transition: background 0.3s ease-in-out;
+}
+/* Hover effect for CV button */
+nav ul li a[download]:hover {
+  background: #d1a600; /* Darker shade of yellow */
+  color: white;
+}
 /* Profile Section */
 .profile-section {
   text-align: center;
