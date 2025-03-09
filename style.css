@@ -1,9 +1,10 @@
 /* General Page Styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
   background: #f4f4f4;
+  color: #333; 
 }
 
 /* Header and Navigation */
@@ -24,8 +25,9 @@ nav ul li {
   display: inline-block;
   margin: 10px;
 }
-
 nav ul li a {
+  font-family: 'Inter', sans-serif;  /* Applied Inter for menu items */
+  font-weight: 500;
   color: white;
   text-decoration: none;
   padding: 8px 12px;
@@ -52,17 +54,25 @@ nav ul li a:hover {
 }
 
 blockquote {
+  font-family: 'Lora', serif;  /* Changed font to Lora for blockquotes */
   font-style: italic;
   color: #0056b3;
 }
-
 /* Section Layout */
 .research-section, .publications-section, .awards-section, .gallery-section {
+  font-family: 'Inter', sans-serif;  /* Applied Inter for readability */
   padding: 30px;
   background: white;
   margin: 20px;
   border-radius: 8px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings - Make them Professional */
+h1, h2, h3, h4 {
+  font-family: 'Lora', serif;  /* Changed from Arial to Lora for headings */
+  font-weight: 600;
+  color: #002855; /* Professional blue */
 }
 
 /* Gallery Section */
@@ -87,6 +97,7 @@ blockquote {
 
 /* Footer */
 footer {
+  font-family: 'Inter', sans-serif;  /* Applied Inter for consistency */
   background: #002855;
   color: white;
   text-align: center;
