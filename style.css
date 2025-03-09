@@ -183,54 +183,62 @@ header h1 {
 }
 
 
-
-
-
-
+/* CV and Social Media Section (Not for Contact Page) */
 /* CV and Social Media Section */
-.cv-social-section {
-  text-align: center;
-  padding: 20px;
-  background: #f4f4f4;
-  margin-top: 20px;
-  border-radius: 8px;
+.cv-social-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #f4f4f4;
+    margin-top: 20px;
+    border-radius: 8px;
 }
 
-/* CV Download Button */
-.cv-button {
-  display: inline-block;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  background: #f8c102; /* Gold button */
-  color: #002855;
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background 0.3s ease-in-out;
+/* Social Media Left */
+.social-links {
+    flex: 1;
+    text-align: left;
 }
 
-.cv-button:hover {
-  background: #d1a600; /* Darker yellow */
-  color: white;
-}
-
-/* Social Media Icons */
 .social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 10px;
+    display: flex;
+    gap: 10px;
 }
 
 .social-icons a img {
-  width: 40px; /* Adjust size of social icons */
-  height: 40px;
-  transition: transform 0.3s ease-in-out;
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease-in-out;
 }
 
 .social-icons a img:hover {
-  transform: scale(1.1);
+    transform: scale(1.1);
 }
+
+/* CV Download Right */
+.cv-download {
+    flex: 1;
+    text-align: right;
+}
+
+.cv-button {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    background: #f8c102;
+    color: #002855;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+.cv-button:hover {
+    background: #d1a600;
+    color: white;
+}
+
 
 
 /* Footer */
