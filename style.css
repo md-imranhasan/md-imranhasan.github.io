@@ -18,6 +18,14 @@ header {
   align-items: center;
   justify-content: center;
 }
+.logo {
+  font-family: 'Lora', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: white; /* Ensures visibility */
+  text-align: center;
+  margin-bottom: 10px;
+}
 
 nav ul {
   list-style: none;
