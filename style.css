@@ -11,8 +11,12 @@ body {
 header {
   background: #002855;
   color: white;
-  padding: 15px;
+  padding: 20px 15px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 nav ul {
