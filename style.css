@@ -124,6 +124,32 @@ header h1 {
 }
 
 
+/* Collaborators Section */
+.collaborators-section {
+  padding: 30px;
+  background: white;
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.collaborators-section h2 {
+  color: #002855;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.collaborators-section ul {
+  list-style-type: square;
+  padding-left: 20px;
+}
+
+.collaborators-section ul li {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+
 /* Contact Section */
 .contact-section {
   background: #f8f9fa;
