@@ -87,7 +87,7 @@ blockquote {
 h1, h2, h3, h4 {
   font-weight: 700;
   color: #002855; /* Professional blue */
-  /*text-align: center;*/
+  text-align: left;
   margin-bottom: 15px;
 }
 
@@ -191,8 +191,9 @@ header h1 {
   align-items: center;
   background: #f4f4f4;
   padding: 20px;
-  margin-top: 20px;
+  margin: 20px auto; /* Center the section */
   border-radius: 8px;
+  max-width: 1100px; /* Limit width for better layout */
 }
 
 /* Social Links on the Left */
@@ -304,7 +305,7 @@ header h1 {
 footer {
   background: #002855;
   color: white;
-  /*text-align: center;*/
+  text-align: center;
   padding: 15px;
   margin-top: 20px;
 }
