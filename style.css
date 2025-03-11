@@ -123,7 +123,6 @@ header h1 {
   }
 }
 
-
 /* Collaborators Section */
 .collaborators-section {
   padding: 30px;
@@ -133,21 +132,30 @@ header h1 {
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.collaborators-section h2 {
-  color: #002855;
-  font-size: 24px;
-  margin-bottom: 15px;
+/* Grid Layout for Collaborators */
+.collaborators-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+  gap: 15px; /* Spacing between items */
+  padding-top: 10px;
 }
 
-.collaborators-section ul {
-  list-style-type: square;
-  padding-left: 20px;
-}
-
-.collaborators-section ul li {
+/* Individual Collaborator Styling */
+.collaborators-grid div {
   font-size: 18px;
-  margin-bottom: 10px;
+  padding: 10px;
+  background: #f4f4f4;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
+
+/* Adjust for Small Screens */
+@media (max-width: 600px) {
+  .collaborators-grid {
+    grid-template-columns: 1fr; /* Single column for mobile */
+  }
+}
+
 
 
 /* Contact Section */
