@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Md. Imran Hasan — Computational Biologist</title>
+<meta name="description" content="Md. Imran Hasan — PhD researcher at Purdue University working on complex disease genetics, GWAS, multi-omics networks, and drug target discovery.">
+<meta name="author" content="Md. Imran Hasan">
+<meta property="og:title" content="Md. Imran Hasan — Computational Biologist">
+<meta property="og:description" content="PhD researcher in complex disease genetics, GWAS, and drug target discovery at Purdue University.">
+<meta property="og:type" content="profile">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============ TOKENS ============
+     Palette derived from Sanger sequencing chromatogram traces:
+     A=green, C=blue, G=black, T=red. Used as a categorical accent system. */
+  :root{
+    --paper:      #F7F7F4;
+    --surface:    #FFFFFF;
+    --surface-2:  #F1F2ED;
+    --ink:        #14181C;
+    --ink-2:      #3D4750;
+    --ink-3:      #737D86;
+    --rule:       #E3E5DE;
+    --rule-2:     #CDD1C7;
+
+    --base-a:     #2E7D51;   /* adenine  — green  */
+    --base-c:     #1D5CB8;   /* cytosine — blue   */
+    --base-g:     #14181C;   /* guanine  — black  */
+    --base-t:     #C2384E;   /* thymine  — red    */
+    --amber:      #A87515;
+
+    --disp: 'Archivo', system-ui, sans-serif;
+    --serif: 'Newsreader', Georgia, serif;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+    --wrap: 1120px;
+    --gutter: 32px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; scroll-padding-top:70px; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+  }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--serif);
+    font-size:17px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  ::selection{ background:var(--base-c); color:#fff; }
+
+  a{ color:var(--base-c); text-decoration:none; }
+  a:hover{ text-decoration:underline; text-underline-offset:3px; }
+  :focus-visible{ outline:2px solid var(--base-c); outline-offset:3px; border-radius:2px; }
+
+  .wrap{ max-width:var(--wrap); margin:0 auto; padding:0 var(--gutter); }
+
+  /* ============ NAV ============ */
+  .nav{
+    position:sticky; top:0; z-index:60;
+    background:rgba(247,247,244,.92);
+    backdrop-filter:saturate(180%) blur(12px);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav-in{
+    max-width:var(--wrap); margin:0 auto; padding:0 var(--gutter);
+    height:58px; display:flex; align-items:center; justify-content:space-between; gap:20px;
+  }
+  .mark{
+    font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.02em;
+    color:var(--ink); white-space:nowrap;
+  }
+  .mark i{ font-style:normal; color:var(--base-c); }
+  .nav ol{ display:flex; gap:24px; list-style:none; }
+  .nav ol a{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.07em; text-transform:uppercase;
+    color:var(--ink-3);
+  }
+  .nav ol a:hover{ color:var(--ink); text-decoration:none; }
+  .nav ol a.on{ color:var(--base-c); }
+  .nav ol a .n{ color:var(--rule-2); margin-right:5px; }
+  .burger{
+    display:none; font-family:var(--mono); font-size:11.5px; letter-spacing:.06em;
+    background:none; border:1px solid var(--rule-2); color:var(--ink);
+    padding:8px 12px; border-radius:3px; cursor:pointer; min-height:38px;
+  }
+
+  /* ============ PAPER HEADER (hero) ============ */
+  .head{ padding:64px 0 44px; border-bottom:1px solid var(--rule); }
+  .stamp{
+    font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--ink-3); display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:26px;
+  }
+  .stamp .dot{ width:6px; height:6px; border-radius:50%; background:var(--base-a); display:inline-block; }
+  .stamp .sep{ color:var(--rule-2); }
+
+  .head h1{
+    font-family:var(--disp); font-weight:800; letter-spacing:-.035em; line-height:.94;
+    font-size:clamp(46px, 9vw, 104px); color:var(--ink); margin-bottom:20px;
+  }
+  .head h1 .sur{ color:var(--base-c); }
+  .thesis{
+    font-family:var(--serif); font-style:italic; font-weight:300;
+    font-size:clamp(19px,2.4vw,26px); line-height:1.42; color:var(--ink-2);
+    max-width:30ch; margin-bottom:30px;
+  }
+  .affil{
+    display:flex; gap:26px; flex-wrap:wrap; align-items:flex-start;
+    padding-top:22px; border-top:1px solid var(--rule);
+  }
+  .affil-photo{
+    width:74px; height:74px; border-radius:3px; object-fit:cover; object-position:center top;
+    border:1px solid var(--rule-2); filter:grayscale(100%) contrast(1.06);
+    transition:filter .35s ease; flex-shrink:0;
+  }
+  .affil-photo:hover{ filter:grayscale(0%); }
+  .affil-txt{ font-family:var(--mono); font-size:12.5px; line-height:1.85; color:var(--ink-2); }
+  .affil-txt b{ color:var(--ink); font-weight:600; }
+
+  .metrics{ display:flex; flex-wrap:wrap; gap:0; margin-top:34px; border-top:1px solid var(--rule); }
+  .metric{ flex:1 1 130px; padding:18px 20px 16px 0; border-right:1px solid var(--rule); }
+  .metric:last-child{ border-right:none; }
+  .metric b{ display:block; font-family:var(--disp); font-weight:700; font-size:30px; letter-spacing:-.03em; color:var(--ink); line-height:1; }
+  .metric span{ font-family:var(--mono); font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); }
+
+  .cta{ display:flex; gap:10px; flex-wrap:wrap; margin-top:30px; }
+  .btn{
+    font-family:var(--mono); font-size:12px; letter-spacing:.05em; text-transform:uppercase;
+    padding:12px 18px; border-radius:3px; border:1px solid var(--rule-2); color:var(--ink);
+    display:inline-flex; align-items:center; gap:8px; background:var(--surface); min-height:44px;
+  }
+  .btn:hover{ text-decoration:none; border-color:var(--ink); }
+  .btn.solid{ background:var(--ink); color:var(--paper); border-color:var(--ink); font-weight:500; }
+  .btn.solid:hover{ background:var(--base-c); border-color:var(--base-c); }
+
+  /* ============ SECTIONS ============ */
+  section{ padding:80px 0; border-bottom:1px solid var(--rule); }
+  .sec-head{ margin-bottom:40px; }
+  .sec-n{
+    font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--ink-3); margin-bottom:14px; display:block;
+  }
+  .sec-n em{ font-style:normal; color:var(--base-c); }
+  h2{
+    font-family:var(--disp); font-weight:700; letter-spacing:-.028em; line-height:1.04;
+    font-size:clamp(28px,4.6vw,44px); color:var(--ink); max-width:20ch;
+  }
+  h2 i{ font-family:var(--serif); font-style:italic; font-weight:400; color:var(--base-c); }
+
+  /* ============ FIGURE ============ */
+  figure{ margin:0; }
+  .fig-box{
+    background:var(--surface); border:1px solid var(--rule); border-radius:4px;
+    padding:8px; overflow:hidden;
+  }
+  figcaption{
+    font-family:var(--mono); font-size:11.5px; line-height:1.66; color:var(--ink-3);
+    margin-top:14px; padding-left:14px; border-left:2px solid var(--rule-2); max-width:70ch;
+  }
+  figcaption b{ color:var(--ink-2); font-weight:600; }
+
+  /* ---- Fig 1: network ---- */
+  #net{ width:100%; height:auto; display:block; }
+  .nd{ cursor:pointer; }
+  .nd circle{ transition:r .25s cubic-bezier(.34,1.4,.5,1), fill-opacity .25s ease; }
+  .nd text{
+    font-family:'IBM Plex Mono', monospace; font-size:9.5px; fill:var(--ink-2);
+    pointer-events:none; transition:fill .2s ease, font-weight .2s ease;
+  }
+  .nd:hover text, .nd:focus text{ fill:var(--ink); font-weight:600; }
+  .edge{ stroke:var(--rule-2); stroke-width:1; transition:stroke .25s ease, stroke-width .25s ease; }
+  .edge.lit{ stroke:var(--base-c); stroke-width:1.8; }
+  .net-info{
+    font-family:var(--mono); font-size:11.5px; color:var(--ink-2); min-height:34px;
+    padding:11px 14px; background:var(--surface-2); border-radius:3px; margin-top:8px;
+    line-height:1.55;
+  }
+  .net-info b{ color:var(--ink); }
+
+  /* ============ ABSTRACT ============ */
+  .abstract{ display:grid; grid-template-columns:1fr 1fr; gap:44px; }
+  .abstract p{ font-size:17.5px; line-height:1.68; color:var(--ink-2); margin-bottom:17px; }
+  .abstract p:last-child{ margin-bottom:0; }
+  .abstract strong{ color:var(--ink); font-weight:500; }
+  .pull{
+    font-family:var(--serif); font-style:italic; font-weight:300;
+    font-size:clamp(20px,2.6vw,27px); line-height:1.45; color:var(--ink);
+    padding-left:22px; border-left:2px solid var(--base-a);
+  }
+  .pull cite{ display:block; font-style:normal; font-family:var(--mono); font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); margin-top:16px; }
+
+  /* ============ RESEARCH CARDS ============ */
+  .rgrid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:4px; overflow:hidden; }
+  .rcard{ background:var(--surface); padding:30px 28px; }
+  .rcard .tag{
+    font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+    padding:4px 9px; border-radius:2px; display:inline-block; margin-bottom:16px; color:#fff;
+  }
+  .rcard h3{ font-family:var(--disp); font-weight:600; font-size:20px; letter-spacing:-.015em; margin-bottom:12px; line-height:1.22; }
+  .rcard p{ font-size:15.5px; line-height:1.62; color:var(--ink-2); margin-bottom:14px; }
+  .genes{ display:flex; flex-wrap:wrap; gap:6px; }
+  .gene{
+    font-family:var(--mono); font-size:11px; padding:4px 9px; border-radius:2px;
+    background:var(--surface-2); border:1px solid var(--rule); color:var(--ink-2);
+  }
+  .gene i{ font-style:italic; }
+
+  /* ============ REFERENCES ============ */
+  .filters{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:26px; }
+  .fbtn{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.05em; text-transform:uppercase;
+    background:var(--surface); border:1px solid var(--rule-2); color:var(--ink-3);
+    padding:10px 15px; border-radius:20px; cursor:pointer; min-height:40px;
+  }
+  .fbtn:hover{ color:var(--ink); }
+  .fbtn.on{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+
+  .ref{
+    display:grid; grid-template-columns:44px 1fr; gap:14px;
+    padding:19px 0; border-bottom:1px solid var(--rule);
+  }
+  .ref:last-child{ border-bottom:none; }
+  .ref-n{ font-family:var(--mono); font-size:12px; color:var(--ink-3); padding-top:3px; }
+  .ref-t{ font-size:16.5px; line-height:1.5; color:var(--ink); margin-bottom:6px; }
+  .ref-a{ font-family:var(--mono); font-size:11.5px; line-height:1.6; color:var(--ink-3); margin-bottom:8px; }
+  .ref-a b{ color:var(--ink-2); font-weight:600; }
+  .ref-v{ font-style:italic; color:var(--ink-2); font-size:15px; }
+  .ref-m{ display:flex; gap:7px; flex-wrap:wrap; align-items:center; margin-top:9px; }
+  .chip{ font-family:var(--mono); font-size:10px; letter-spacing:.04em; padding:3px 8px; border-radius:2px; border:1px solid var(--rule-2); color:var(--ink-3); }
+  .chip.first{ border-color:var(--base-t); color:var(--base-t); }
+  .chip.q1{ border-color:var(--base-a); color:var(--base-a); }
+  .ref-m a{ font-family:var(--mono); font-size:11px; }
+  .hide{ display:none !important; }
+
+  /* ============ TIMELINE ============ */
+  .tl{ position:relative; padding-left:0; }
+  .tlrow{ display:grid; grid-template-columns:132px 1fr; gap:26px; padding:24px 0; border-top:1px solid var(--rule); }
+  .tlrow:first-child{ border-top:none; }
+  .tl-when{ font-family:var(--mono); font-size:11.5px; letter-spacing:.04em; color:var(--ink-3); padding-top:4px; }
+  .tl-when b{ display:block; color:var(--base-c); font-weight:600; }
+  .tl-what h3{ font-family:var(--disp); font-weight:600; font-size:19px; letter-spacing:-.012em; margin-bottom:3px; }
+  .tl-where{ font-family:var(--mono); font-size:12px; color:var(--ink-3); margin-bottom:12px; }
+  .tl-what ul{ list-style:none; }
+  .tl-what li{ font-size:16px; line-height:1.58; color:var(--ink-2); padding-left:17px; position:relative; margin-bottom:7px; }
+  .tl-what li::before{ content:""; position:absolute; left:0; top:11px; width:6px; height:1px; background:var(--rule-2); }
+
+  /* ============ SKILLS ============ */
+  .sk{ display:grid; grid-template-columns:repeat(2,1fr); gap:34px 46px; }
+  .sk h3{
+    font-family:var(--mono); font-size:11px; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--ink-3); margin-bottom:14px; font-weight:500;
+    padding-bottom:9px; border-bottom:1px solid var(--rule);
+  }
+  .chips{ display:flex; flex-wrap:wrap; gap:7px; }
+  .chips span{
+    font-family:var(--mono); font-size:12px; padding:6px 11px; border-radius:2px;
+    background:var(--surface); border:1px solid var(--rule); color:var(--ink-2);
+  }
+
+  /* ============ GALLERY ============ */
+  .gal{ display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
+  .gi{ position:relative; aspect-ratio:4/3; overflow:hidden; background:var(--surface-2); border-radius:2px; }
+  .gi img{ width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(100%) contrast(1.04); transition:filter .45s ease, transform .45s ease; }
+  .gi:hover img{ filter:grayscale(0%); transform:scale(1.05); }
+  .gi figcaption{
+    position:absolute; inset:auto 0 0 0; margin:0; padding:22px 11px 9px; border:none;
+    background:linear-gradient(180deg, rgba(20,24,28,0), rgba(20,24,28,.88));
+    color:#fff; font-size:10.5px; opacity:0; transition:opacity .28s ease;
+  }
+  .gi:hover figcaption{ opacity:1; }
+
+  /* ============ FOOTER ============ */
+  footer{ padding:74px 0 46px; }
+  .fgrid{ display:grid; grid-template-columns:1.3fr 1fr; gap:44px; align-items:start; }
+  .flinks{ display:flex; flex-direction:column; gap:11px; font-family:var(--mono); font-size:14px; }
+  .colophon{
+    font-family:var(--mono); font-size:10.5px; color:var(--ink-3); line-height:1.75;
+    margin-top:56px; padding-top:20px; border-top:1px solid var(--rule);
+    display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap;
+  }
+
+  [data-rv]{ opacity:0; transform:translateY(15px); transition:opacity .55s ease, transform .55s ease; }
+  [data-rv].in{ opacity:1; transform:none; }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px){
+    :root{ --gutter:22px; }
+    .nav ol{
+      display:none; position:absolute; top:58px; left:0; right:0; flex-direction:column; gap:0;
+      background:var(--paper); border-bottom:1px solid var(--rule); padding:6px var(--gutter) 14px;
+    }
+    .nav ol.open{ display:flex; }
+    .nav ol li{ border-top:1px solid var(--rule); }
+    .nav ol li:first-child{ border-top:none; }
+    .nav ol a{ display:flex; align-items:center; min-height:46px; }
+    .burger{ display:block; }
+    .abstract, .rgrid, .sk, .fgrid{ grid-template-columns:1fr; }
+    .gal{ grid-template-columns:repeat(2,1fr); }
+    .tlrow{ grid-template-columns:1fr; gap:8px; }
+    .metric{ flex:1 1 44%; }
+    section{ padding:58px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <div class="mark">HASAN<i>·</i>MI</div>
+    <ol id="menu">
+      <li><a href="#abstract"><span class="n">01</span>Abstract</a></li>
+      <li><a href="#research"><span class="n">02</span>Research</a></li>
+      <li><a href="#refs"><span class="n">03</span>Publications</a></li>
+      <li><a href="#exp"><span class="n">04</span>Positions</a></li>
+      <li><a href="#methods"><span class="n">05</span>Methods</a></li>
+      <li><a href="#field"><span class="n">06</span>Field Notes</a></li>
+      <li><a href="#contact"><span class="n">07</span>Contact</a></li>
+    </ol>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="menu">Contents</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============ PAPER HEADER ============ -->
+<header class="head">
+  <div class="wrap">
+    <div class="stamp">
+      <span class="dot" aria-hidden="true"></span>
+      <span>Purdue University</span>
+      <span class="sep">/</span>
+      <span>Dept. of Biological Sciences</span>
+      <span class="sep">/</span>
+      <span>West Lafayette, IN</span>
+    </div>
+
+    <h1>Md. Imran<br><span class="sur">Hasan</span></h1>
+
+    <p class="thesis">Reading disease out of the genome — variants, networks, and the targets worth drugging.</p>
+
+    <div class="affil">
+      <img class="affil-photo" src="images/hero-photo.jpg" alt="Portrait of Md. Imran Hasan" width="74" height="74">
+      <div class="affil-txt">
+        <b>PhD Candidate</b>, Biological Sciences · Purdue University<br>
+        Paschou Lab · Lynn Fellow, PULSe<br>
+        <a href="mailto:imranhasaniucse@gmail.com">imranhasaniucse@gmail.com</a>
+      </div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric"><b>16</b><span>Publications</span></div>
+      <div class="metric"><b>8</b><span>First author</span></div>
+      <div class="metric"><b>360</b><span>Citations</span></div>
+      <div class="metric"><b>10</b><span>h-index</span></div>
+      <div class="metric"><b>11</b><span>i10-index</span></div>
+    </div>
+
+    <div class="cta">
+      <a class="btn solid" href="#refs">Read the work</a>
+      <a class="btn" href="MD_Imran_Hasan_CV.pdf" target="_blank" rel="noopener">Curriculum Vitae ↗</a>
+      <a class="btn" href="https://scholar.google.com/citations?user=hCdKwZ4AAAAJ&hl=en" target="_blank" rel="noopener">Scholar ↗</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ FIG 1 — NETWORK ============ -->
+<section id="figure1" data-rv>
+  <div class="wrap">
+    <figure>
+      <div class="fig-box">
+        <svg id="net" viewBox="0 0 900 420" role="img" aria-label="Interactive network of research domains and hub genes"></svg>
+      </div>
+      <div class="net-info" id="netinfo">Hover or focus any node to trace its connections.</div>
+      <figcaption>
+        <b>Fig. 1 — Research interaction network.</b> Domain nodes (larger) connect to the hub genes and
+        cohorts they were identified in. Gene names are real findings from the publications listed in
+        §03 — <i>mgrA</i>, <i>arlR</i>, and <i>sarA</i> as antimicrobial-resistance hubs in
+        <i>S.&nbsp;aureus</i>; <i>ISG15</i>, <i>STAT1</i>, and <i>MX1</i> as biomarkers in HIV infection.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 01 ABSTRACT ============ -->
+<section id="abstract" data-rv>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-n"><em>§ 01</em> &nbsp;·&nbsp; Abstract</span>
+      <h2>From computer science to <i>disease genomes</i>.</h2>
+    </div>
+    <div class="abstract">
+      <div>
+        <p>I started in <strong>computer science</strong> at Islamic University, Bangladesh, and found my way into biology through code. An undergraduate project on COVID-19 and Mucormycosis co-infection turned into a genuine research direction: using computation to find where disease mechanisms are actually vulnerable.</p>
+        <p>That took me to <strong>Texas A&amp;M–San Antonio</strong> for an M.S. in Biology, where I worked on antimicrobial resistance in <em>Staphylococcus aureus</em> and single-cell transcriptomics of HIV infection — and now to <strong>Purdue</strong>, where I study the shared genetic architecture of Cardiovascular-Kidney-Metabolic syndrome across ancestries.</p>
+        <p>The through-line is the same at every step: <strong>take a large, messy biological dataset and find the part that matters</strong> — the hub gene, the risk locus, the pathway, the druggable target.</p>
+      </div>
+      <div>
+        <blockquote class="pull">
+          In the era of big data, biology is not just an experimental science — it is a computational science.
+          <cite>— Research statement</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 RESEARCH ============ -->
+<section id="research" data-rv>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-n"><em>§ 02</em> &nbsp;·&nbsp; Research</span>
+      <h2>Four programs, one <i>question</i>.</h2>
+    </div>
+    <div class="rgrid">
+      <article class="rcard">
+        <span class="tag" style="background:var(--base-c)">Statistical genetics</span>
+        <h3>Cross-ancestry genetics of CKM syndrome</h3>
+        <p>Multivariate GWAS via Genomic SEM across 13 clinical traits, identifying <strong>250+ shared risk loci</strong>. Post-GWAS pipelines — partitioned heritability, fine-mapping, and cross-ancestry polygenic risk scores — separated Stage&nbsp;4 patients from Stage&nbsp;0 controls in the All of Us cohort.</p>
+        <div class="genes"><span class="gene">Genomic SEM</span><span class="gene">S-LDSC</span><span class="gene">Fine-mapping</span><span class="gene">PRS</span><span class="gene">All of Us</span></div>
+      </article>
+
+      <article class="rcard">
+        <span class="tag" style="background:var(--base-a)">Antimicrobial resistance</span>
+        <h3>Resistance hubs in <em>S.&nbsp;aureus</em></h3>
+        <p>Analyzed <strong>1,062 whole-genome sequences</strong> to catalogue AMR genes, then built interaction networks to isolate the genes actually driving resistance. Mapped resistance mechanisms — efflux pumps, target modification, target protection — onto drug classes including penams and tetracyclines.</p>
+        <div class="genes"><span class="gene"><i>mgrA</i></span><span class="gene"><i>arlR</i></span><span class="gene"><i>sarA</i></span><span class="gene">WGS</span><span class="gene">Network analysis</span></div>
+      </article>
+
+      <article class="rcard">
+        <span class="tag" style="background:var(--base-t)">Single-cell transcriptomics</span>
+        <h3>HIV biomarkers &amp; drug targets</h3>
+        <p>Single-cell RNA-seq of immune cells from HIV patients, with differential expression called in Seurat and focused on <strong>CD4⁺ T cells</strong>. GO and KEGG enrichment classified the signal; molecular docking then nominated Hypericin as a candidate inhibitor of key viral-associated proteins.</p>
+        <div class="genes"><span class="gene"><i>ISG15</i></span><span class="gene"><i>STAT1</i></span><span class="gene"><i>MX1</i></span><span class="gene">Seurat</span><span class="gene">Docking</span></div>
+      </article>
+
+      <article class="rcard">
+        <span class="tag" style="background:var(--amber)">Machine learning</span>
+        <h3>miRNA, vaccine response &amp; imaging</h3>
+        <p>At UT Health San Antonio, modelled miRNA correlates of immune resilience and vaccine response (Random Forest, SVM, gradient boosting) by integrating single-cell and bulk RNA-seq. Separately, built deep convolutional networks for colon cancer and osteosarcoma detection from medical images.</p>
+        <div class="genes"><span class="gene">Random Forest</span><span class="gene">SVM</span><span class="gene">CNN</span><span class="gene">TensorFlow</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 REFERENCES ============ -->
+<section id="refs" data-rv>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-n"><em>§ 03</em> &nbsp;·&nbsp; Publications</span>
+      <h2>Sixteen papers, <i>eight</i> as first author.</h2>
+    </div>
+    <div class="filters">
+      <button class="fbtn on" data-f="all">All · 16</button>
+      <button class="fbtn" data-f="first">First author · 8</button>
+      <button class="fbtn" data-f="co">Co-authored · 8</button>
+    </div>
+    <div id="reflist"></div>
+  </div>
+</section>
+
+<!-- ============ 04 POSITIONS ============ -->
+<section id="exp" data-rv>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-n"><em>§ 04</em> &nbsp;·&nbsp; Positions</span>
+      <h2>Where the work <i>happened</i>.</h2>
+    </div>
+    <div class="tl">
+      <div class="tlrow">
+        <div class="tl-when"><b>2025 —</b>Present</div>
+        <div class="tl-what">
+          <h3>Graduate Research Assistant — Paschou Lab</h3>
+          <div class="tl-where">Dept. of Biological Sciences, Purdue University · West Lafayette, IN</div>
+          <ul>
+            <li>Cross-ancestry multivariate GWAS of Cardiovascular-Kidney-Metabolic syndrome using Genomic SEM across 13 clinical traits.</li>
+            <li>Built post-GWAS pipelines (S-LDSC, fine-mapping, cross-ancestry PRS) validated on the All of Us cohort.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tlrow">
+        <div class="tl-when"><b>2023 — 2025</b>M.S. Biology</div>
+        <div class="tl-what">
+          <h3>Research &amp; Teaching Assistant — Teufel Lab</h3>
+          <div class="tl-where">Texas A&amp;M University–San Antonio · CGPA 4.00/4.00</div>
+          <ul>
+            <li>Whole-genome and network analysis of antimicrobial resistance in <em>S.&nbsp;aureus</em>; thesis on computational systems biology for drug target discovery.</li>
+            <li>Single-cell RNA-seq of HIV infection identifying biomarkers and candidate inhibitors.</li>
+            <li>Taught and mentored undergraduates in statistics for biology and medicine.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tlrow">
+        <div class="tl-when"><b>2024</b>Summer</div>
+        <div class="tl-what">
+          <h3>Research Intern — Ahuja Lab</h3>
+          <div class="tl-where">UT Health Science Center San Antonio · Center for Personalized Medicine</div>
+          <ul>
+            <li>VIRAMP study: vaccine effectiveness and immune response to SARS-CoV-2 vaccines in active military personnel.</li>
+            <li>Integrated miRNA expression with phenotype data to characterize immune resilience and immune aging.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tlrow">
+        <div class="tl-when"><b>2019 — 2022</b>B.Sc. CSE</div>
+        <div class="tl-what">
+          <h3>Research Assistant — Rahman &amp; Moni Labs</h3>
+          <div class="tl-where">Islamic University, Bangladesh · CSE Dept.</div>
+          <ul>
+            <li>Systems biology linking type 2 diabetes to tuberculosis and rheumatoid arthritis; blood-based COVID-19 drug targets.</li>
+            <li>Deep convolutional networks for colon cancer and osteosarcoma detection.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 METHODS ============ -->
+<section id="methods" data-rv>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-n"><em>§ 05</em> &nbsp;·&nbsp; Methods</span>
+      <h2>The <i>toolkit</i>.</h2>
+    </div>
+    <div class="sk">
+      <div>
+        <h3>Statistical genetics</h3>
+        <div class="chips"><span>GWAS</span><span>Genomic SEM</span><span>S-LDSC</span><span>Fine-mapping</span><span>Polygenic risk scores</span><span>Cross-ancestry analysis</span></div>
+      </div>
+      <div>
+        <h3>Omics analysis</h3>
+        <div class="chips"><span>RNA-seq</span><span>scRNA-seq / Seurat</span><span>Microarray</span><span>miRNA</span><span>GO &amp; KEGG enrichment</span><span>WGS annotation</span></div>
+      </div>
+      <div>
+        <h3>Structural &amp; drug discovery</h3>
+        <div class="chips"><span>Molecular docking</span><span>MD simulations</span><span>Virtual screening</span><span>Protein modelling</span><span>AutoDock Vina</span><span>Schrödinger</span><span>PyMOL</span></div>
+      </div>
+      <div>
+        <h3>Machine learning</h3>
+        <div class="chips"><span>TensorFlow</span><span>Keras</span><span>Scikit-learn</span><span>CNNs</span><span>Random Forest</span><span>SVM</span><span>Gradient boosting</span></div>
+      </div>
+      <div>
+        <h3>Languages</h3>
+        <div class="chips"><span>R</span><span>Python</span><span>Bash</span><span>SQL</span><span>C / C++</span><span>Perl</span><span>MATLAB</span></div>
+      </div>
+      <div>
+        <h3>Environments</h3>
+        <div class="chips"><span>Linux / HPC</span><span>Cytoscape</span><span>Galaxy</span><span>Jupyter</span><span>Git</span><span>LaTeX</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 FIELD NOTES ============ -->
+<section id="field" data-rv>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-n"><em>§ 06</em> &nbsp;·&nbsp; Field notes</span>
+      <h2>Conferences, labs, and the <i>long drives</i> between.</h2>
+    </div>
+    <div class="filters">
+      <button class="fbtn on" data-g="all">All · 17</button>
+      <button class="fbtn" data-g="lab">Lab &amp; conference · 9</button>
+      <button class="fbtn" data-g="road">On the road · 8</button>
+    </div>
+    <figure>
+      <div class="gal" id="gal"></div>
+      <figcaption style="margin-top:16px;"><b>Fig. 3 — Field notes.</b> Three Minute Thesis and RISE presentations, lab and campus life at Texas A&amp;M–San Antonio, and the American Southwest in between.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 07 CONTACT ============ -->
+<footer id="contact" data-rv>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-n"><em>§ 07</em> &nbsp;·&nbsp; Contact</span>
+      <h2>Open to postdoc and <i>collaboration</i>.</h2>
+    </div>
+    <div class="fgrid">
+      <div>
+        <p style="font-size:17.5px; color:var(--ink-2); max-width:46ch;">
+          Based in West Lafayette, Indiana. I'm glad to talk about statistical genetics,
+          network biology, single-cell methods, or anything target-discovery shaped —
+          whether that's a collaboration, a position, or just a good question.
+        </p>
+      </div>
+      <div class="flinks">
+        <a href="mailto:imranhasaniucse@gmail.com">imranhasaniucse@gmail.com</a>
+        <a href="https://scholar.google.com/citations?user=hCdKwZ4AAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar ↗</a>
+        <a href="https://orcid.org/0000-0002-1811-3471" target="_blank" rel="noopener">ORCID 0000-0002-1811-3471 ↗</a>
+        <a href="https://www.linkedin.com/in/ihasanbio/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://www.researchgate.net/profile/Md-Hasan-620" target="_blank" rel="noopener">ResearchGate ↗</a>
+        <a href="https://github.com/md-imranhasan" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+    <div class="colophon">
+      <span>© 2026 Md. Imran Hasan · West Lafayette, IN</span>
+      <span>Set in Archivo, Newsreader &amp; IBM Plex Mono · Palette after Sanger chromatogram traces</span>
+    </div>
+  </div>
+</footer>
+
+</main>
+
+<script>
+/* ================= PUBLICATIONS ================= */
+const PUBS = [
+  {y:2025,first:1,t:"Network Analysis of Antimicrobial Resistance in Staphylococcus aureus: Characterization of Hub Genes and Their Functional Implications",a:["Md. Imran Hasan","Davida S. Smyth","Ashley I. Teufel"],v:"NAR Genomics and Bioinformatics",doi:"10.1093/nargab/lqaf147",if:"2.8",q:"Q1"},
+  {y:2025,first:1,t:"Integrative Single-Cell Transcriptomic Analysis Reveals Key Biomarkers, Regulatory Networks, and Novel Drug Candidates in HIV Infection",a:["Md Imran Hasan","Srinivas Mummidi","Ashley Teufel"],v:"Virology Journal",doi:"10.1186/s12985-025-03030-z",if:"3.8",q:"Q1"},
+  {y:2024,first:0,t:"Screening out molecular pathways and prognostic biomarkers of ultraviolet-mediated melanoma through computational techniques",a:["Arju Hossain","Asif Ahsan","Imran Hasan","et al."],v:"The International Journal of Biological Markers",doi:"10.1177/03936155241230968"},
+  {y:2023,first:0,t:"An integrated complete-genome sequencing and systems biology approach to predict antimicrobial resistance genes in the virulent bacterial strains of Moraxella catarrhalis",a:["Sadia Afrin Bristy","Md Arju Hossain","Md Imran Hasan","et al."],v:"Briefings in Functional Genomics",doi:"10.1093/bfgp/elad005"},
+  {y:2023,first:1,t:"Galangin for COVID-19 and Mucormycosis co-infection: a potential therapeutic strategy of targeting critical host signal pathways triggered by SARS-CoV-2 and Mucormycosis",a:["Md. Imran Hasan","Md. Arju Hossain","Md Habibur Rahman","et al."],v:"Network Modeling Analysis in Health Informatics and Bioinformatics",doi:"10.1007/s13721-023-00421-6",if:"2.1"},
+  {y:2023,first:0,t:"An integrated in-silico Pharmaco-BioInformatics approach to identify synergistic effects of COVID-19 to HIV patients",a:["Md Arju Hossain","Md Habibur Rahman","Habiba Sultana","Md Imran Hasan","et al."],v:"Computers in Biology and Medicine",doi:"10.1016/j.compbiomed.2023.106656"},
+  {y:2023,first:0,t:"Bioinformatics and in silico approaches to identify novel biomarkers and key pathways for cancers linked to the progression of female infertility",a:["Md. Arju Hossain","Md Sohel","Md Habibur Rahman","Md Imran Hasan","et al."],v:"PLOS ONE",doi:"10.1371/journal.pone.0265746",if:"3.7",q:"Q1"},
+  {y:2023,first:0,t:"Study of kaempferol in the treatment of COVID-19 combined with Chikungunya co-infection by network pharmacology and molecular docking technology",a:["Md Arju Hossain","Md Sohel","Tayeba Sultana","Md Imran Hasan","et al."],v:"Informatics in Medicine Unlocked",doi:"10.1016/j.imu.2023.101289"},
+  {y:2022,first:1,t:"Automated Detection and Characterization of Colon Cancer with Deep Convolutional Neural Networks",a:["Md Imran Hasan","Shahin Ali","Habibur Rahman","Khairul Islam"],v:"Journal of Healthcare Engineering",doi:"10.1155/2022/5269913",if:"3.8"},
+  {y:2022,first:1,t:"A system biology approach to determine therapeutic targets by identifying molecular mechanisms and key pathways for type 2 diabetes linked to tuberculosis and rheumatoid arthritis",a:["Md. Imran Hasan","Md Arju Hossain","Piplu Bhuiyan","Md Sipon Miah","Md Habibur Rahman"],v:"Life Sciences",doi:"10.1016/j.lfs.2022.120483",if:"5.0",q:"Q1"},
+  {y:2022,first:1,t:"Identifying molecular signatures and pathways shared between Alzheimer's and Huntington's disorders: A bioinformatics and systems biology approach",a:["Nosin Ibna Mahbub†","Md. Imran Hasan†","Md Habibur Rahman","et al."],v:"Informatics in Medicine Unlocked",doi:"10.1016/j.imu.2022.100888",if:"3.8",q:"Q2",note:"† Equal contribution"},
+  {y:2022,first:1,t:"Identification of Black Fungus Diseases Using CNN and Transfer-Learning Approach",a:["Md. Imran Hasan","Nosin Ibna Mahbub","Bappa Sarkar"],v:"ICCA 2022 · ACM Digital Library",doi:"10.1145/3542954.3542972"},
+  {y:2022,first:1,t:"Systems Biology and Bioinformatics approach to identify blood-based signature molecules and drug targets of patients with COVID-19",a:["Md. Imran Hasan","Md Habibur Rahman","Md Babul Islam","et al."],v:"Informatics in Medicine Unlocked",doi:"10.1016/j.imu.2021.100840",if:"3.8",q:"Q2"},
+  {y:2022,first:0,t:"Differential gene expression profiling reveals potential biomarkers and pharmacological compounds against SARS-CoV-2: insights from machine learning and bioinformatics approaches",a:["M. Nazmul Hoque","Md. Arif Khan","Md. Arju Hossain","Md. Imran Hasan","et al."],v:"Frontiers in Immunology",doi:"10.3389/fimmu.2022.918692",if:"7.3",q:"Q1"},
+  {y:2022,first:0,t:"Molecular docking and pharmacology study to explore bio-active compounds and mechanisms of Caesalpinia bonducella on polycystic ovarian syndrome",a:["Md Arju Hossain","Ashik Sharfaraz","Md Imran Hasan","et al."],v:"Informatics in Medicine Unlocked",doi:"10.1016/j.imu.2022.101073"},
+  {y:2022,first:0,t:"Bioinformatics and system biology approaches to identify molecular pathogenesis of PCOS, type 2 diabetes, obesity, and cardiovascular disease linked to female infertility",a:["Md Arju Hossain","Md Al Amin","Md Imran Hasan","et al."],v:"Informatics in Medicine Unlocked",doi:"10.1016/j.imu.2022.100960"},
+];
+
+(function(){
+  const list = document.getElementById('reflist');
+  PUBS.forEach((p,i)=>{
+    const authors = p.a.map(n =>
+      /Imran Hasan/.test(n) ? `<b>${n}</b>` : n
+    ).join(', ');
+    const el = document.createElement('div');
+    el.className = 'ref';
+    el.dataset.kind = p.first ? 'first' : 'co';
+    el.innerHTML =
+      `<div class="ref-n">[${i+1}]</div>
+       <div>
+         <div class="ref-t">${p.t}</div>
+         <div class="ref-a">${authors} · ${p.y}</div>
+         <div class="ref-v">${p.v}</div>
+         <div class="ref-m">
+           <span class="chip ${p.first?'first':''}">${p.first?'First author':'Co-author'}</span>
+           ${p.if?`<span class="chip">IF ${p.if}</span>`:''}
+           ${p.q?`<span class="chip q1">${p.q}</span>`:''}
+           ${p.note?`<span class="chip">${p.note}</span>`:''}
+           <a href="https://doi.org/${p.doi}" target="_blank" rel="noopener">doi:${p.doi} ↗</a>
+         </div>
+       </div>`;
+    list.appendChild(el);
+  });
+  document.querySelectorAll('[data-f]').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      document.querySelectorAll('[data-f]').forEach(x=>x.classList.remove('on'));
+      b.classList.add('on');
+      const f = b.dataset.f;
+      list.querySelectorAll('.ref').forEach(r=>{
+        r.classList.toggle('hide', f!=='all' && r.dataset.kind!==f);
+      });
+    });
+  });
+})();
+
+/* ================= GALLERY ================= */
+const GAL = [
+  {s:"images/gallery/3mt-1.jpg",   g:"lab",  c:"Three Minute Thesis — with Dr. Teufel and Dr. Smyth"},
+  {s:"images/gallery/3mt-2.jpg",   g:"lab",  c:"Three Minute Thesis presentation"},
+  {s:"images/gallery/3mt-3.jpg",   g:"lab",  c:"Three Minute Thesis — the cohort"},
+  {s:"images/gallery/headshot.jpg",g:"lab",  c:"Texas A&M–San Antonio"},
+  {s:"images/gallery/lab-prof.jpg",g:"lab",  c:"Inside the lab"},
+  {s:"images/gallery/cafe-lab.jpg",g:"lab",  c:"Lab life"},
+  {s:"images/gallery/tamulab.jpg", g:"lab",  c:"The lab, together"},
+  {s:"images/gallery/tamusa-2.jpg",g:"lab",  c:"On campus at TAMUSA"},
+  {s:"images/gallery/tamu.jpg",    g:"lab",  c:"Texas A&M–San Antonio"},
+  {s:"images/gallery/arches.jpg",  g:"road", c:"Arches National Park, Utah"},
+  {s:"images/gallery/bigbend.jpg", g:"road", c:"Big Bend National Park, Texas"},
+  {s:"images/gallery/horseshoe-bend.jpg", g:"road", c:"Horseshoe Bend, Arizona"},
+  {s:"images/gallery/sedona.jpg",  g:"road", c:"Sedona, Arizona"},
+  {s:"images/gallery/sand-dunes.jpg", g:"road", c:"Great Sand Dunes, Colorado"},
+  {s:"images/gallery/balloon-fiesta.jpg", g:"road", c:"Albuquerque International Balloon Fiesta"},
+  {s:"images/gallery/newmexico-festival.jpg", g:"road", c:"New Mexico"},
+  {s:"images/gallery/dam.jpg",     g:"road", c:"On the road"},
+];
+(function(){
+  const gal = document.getElementById('gal');
+  GAL.forEach(x=>{
+    const f = document.createElement('figure');
+    f.className = 'gi';
+    f.dataset.g = x.g;
+    f.innerHTML = `<img src="${x.s}" alt="${x.c}" loading="lazy"><figcaption>${x.c}</figcaption>`;
+    gal.appendChild(f);
+  });
+  document.querySelectorAll('[data-g]').forEach(b=>{
+    if(!b.classList.contains('fbtn')) return;
+    b.addEventListener('click', ()=>{
+      document.querySelectorAll('.fbtn[data-g]').forEach(x=>x.classList.remove('on'));
+      b.classList.add('on');
+      const f = b.dataset.g;
+      gal.querySelectorAll('.gi').forEach(i=>{
+        i.classList.toggle('hide', f!=='all' && i.dataset.g!==f);
+      });
+    });
+  });
+})();
+
+/* ================= FIG 1 — NETWORK ================= */
+(function(){
+  const svg = document.getElementById('net');
+  const NS = "http://www.w3.org/2000/svg";
+  const mk = (t,a)=>{ const e=document.createElementNS(NS,t); for(const k in a) e.setAttribute(k,a[k]); return e; };
+
+  const C = { c:'#1D5CB8', a:'#2E7D51', t:'#C2384E', am:'#A87515', g:'#14181C' };
+
+  // id, label, x, y, radius, colour, blurb
+  const N = [
+    {id:'gwas',  l:'GWAS / Genomic SEM',  x:200, y:120, r:26, c:C.c,  b:'<b>Cross-ancestry GWAS.</b> 13 traits, 250+ shared risk loci for CKM syndrome.'},
+    {id:'ckm',   l:'CKM syndrome',        x:92,  y:232, r:17, c:C.c,  b:'<b>Cardiovascular-Kidney-Metabolic syndrome.</b> Stage 4 vs Stage 0 separation in All of Us.'},
+    {id:'prs',   l:'PRS',                 x:238, y:266, r:14, c:C.c,  b:'<b>Polygenic risk scores.</b> Built cross-ancestry and validated in the All of Us cohort.'},
+    {id:'aou',   l:'All of Us',           x:120, y:340, r:13, c:C.g,  b:'<b>All of Us Research Program.</b> Diverse-ancestry cohort used for PRS validation.'},
+
+    {id:'amr',   l:'AMR networks',        x:452, y:88,  r:25, c:C.a,  b:'<b>Antimicrobial resistance.</b> 1,062 <i>S. aureus</i> genomes; hub genes driving multidrug resistance.'},
+    {id:'mgra',  l:'mgrA',                x:372, y:196, r:12, c:C.a,  b:'<b>mgrA</b> — global regulator; a top resistance hub in <i>S. aureus</i> networks.'},
+    {id:'arlr',  l:'arlR',                x:468, y:214, r:12, c:C.a,  b:'<b>arlR</b> — two-component response regulator; AMR network hub.'},
+    {id:'sara',  l:'sarA',                x:556, y:170, r:12, c:C.a,  b:'<b>sarA</b> — staphylococcal accessory regulator; virulence and resistance hub.'},
+
+    {id:'sc',    l:'scRNA-seq',           x:700, y:126, r:24, c:C.t,  b:'<b>Single-cell transcriptomics.</b> CD4⁺ T cell signal in HIV infection, called in Seurat.'},
+    {id:'isg15', l:'ISG15',               x:812, y:210, r:12, c:C.t,  b:'<b>ISG15</b> — interferon-stimulated gene; candidate HIV biomarker.'},
+    {id:'stat1', l:'STAT1',               x:706, y:246, r:12, c:C.t,  b:'<b>STAT1</b> — JAK/STAT signalling; candidate HIV biomarker.'},
+    {id:'mx1',   l:'MX1',                 x:790, y:312, r:12, c:C.t,  b:'<b>MX1</b> — antiviral effector; candidate HIV biomarker.'},
+
+    {id:'dock',  l:'Docking',             x:612, y:300, r:18, c:C.am, b:'<b>Molecular docking.</b> Virtual screening that nominated Hypericin as a candidate inhibitor.'},
+    {id:'ml',    l:'Deep learning',       x:398, y:340, r:20, c:C.am, b:'<b>Machine learning.</b> CNNs for cancer imaging; RF/SVM models of vaccine response.'},
+    {id:'target',l:'Drug targets',        x:520, y:372, r:16, c:C.g,  b:'<b>Target discovery.</b> Where every one of these threads is aimed.'},
+  ];
+
+  const E = [
+    ['gwas','ckm'],['gwas','prs'],['prs','aou'],['ckm','aou'],['ckm','prs'],
+    ['amr','mgra'],['amr','arlr'],['amr','sara'],['mgra','arlr'],['arlr','sara'],
+    ['sc','isg15'],['sc','stat1'],['sc','mx1'],['isg15','stat1'],['stat1','mx1'],
+    ['sc','dock'],['dock','target'],['amr','target'],['gwas','target'],['ml','target'],
+    ['ml','sc'],['amr','dock'],['gwas','amr'],['sc','amr'],['ml','gwas'],
+  ];
+
+  const byId = Object.fromEntries(N.map(n=>[n.id,n]));
+  const eEls = [];
+
+  E.forEach(([s,t])=>{
+    const A=byId[s], B=byId[t];
+    const ln = mk('line',{x1:A.x,y1:A.y,x2:B.x,y2:B.y,class:'edge'});
+    ln.dataset.s=s; ln.dataset.t=t;
+    svg.appendChild(ln); eEls.push(ln);
+  });
+
+  const info = document.getElementById('netinfo');
+  const DEFAULT = 'Hover or focus any node to trace its connections.';
+
+  N.forEach(n=>{
+    const grp = mk('g',{class:'nd', tabindex:'0', role:'button'});
+    grp.setAttribute('aria-label', n.l);
+    const ring = mk('circle',{cx:n.x,cy:n.y,r:n.r,fill:n.c,'fill-opacity':.11,stroke:n.c,'stroke-width':1.25});
+    const core = mk('circle',{cx:n.x,cy:n.y,r:Math.max(3,n.r*.24),fill:n.c});
+    const lbl  = mk('text',{x:n.x,y:n.y+n.r+14,'text-anchor':'middle'});
+    lbl.textContent = n.l;
+    grp.append(ring,core,lbl);
+    svg.appendChild(grp);
+
+    const on = ()=>{
+      info.innerHTML = n.b;
+      eEls.forEach(e=>e.classList.toggle('lit', e.dataset.s===n.id || e.dataset.t===n.id));
+      ring.setAttribute('r', n.r*1.14);
+      ring.setAttribute('fill-opacity', .2);
+    };
+    const off = ()=>{
+      info.textContent = DEFAULT;
+      eEls.forEach(e=>e.classList.remove('lit'));
+      ring.setAttribute('r', n.r);
+      ring.setAttribute('fill-opacity', .11);
+    };
+    grp.addEventListener('mouseenter', on);
+    grp.addEventListener('mouseleave', off);
+    grp.addEventListener('focus', on);
+    grp.addEventListener('blur', off);
+  });
+})();
+
+/* ================= NAV: mobile + scroll spy ================= */
+(function(){
+  const burger = document.getElementById('burger');
+  const menu = document.getElementById('menu');
+  burger.addEventListener('click', ()=>{
+    const open = menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open?'true':'false');
+    burger.textContent = open ? 'Close' : 'Contents';
+  });
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{
+    menu.classList.remove('open');
+    burger.setAttribute('aria-expanded','false');
+    burger.textContent = 'Contents';
+  }));
+
+  const links = [...menu.querySelectorAll('a')];
+  const secs = links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  if(secs.length && 'IntersectionObserver' in window){
+    const io = new IntersectionObserver(es=>{
+      es.forEach(e=>{
+        if(e.isIntersecting){
+          const id = '#'+e.target.id;
+          links.forEach(a=>a.classList.toggle('on', a.getAttribute('href')===id));
+        }
+      });
+    }, {rootMargin:'-45% 0px -50% 0px'});
+    secs.forEach(s=>io.observe(s));
+  }
+})();
+
+/* ================= REVEAL ================= */
+(function(){
+  const els = document.querySelectorAll('[data-rv]');
+  if(!('IntersectionObserver' in window)){ els.forEach(e=>e.classList.add('in')); return; }
+  const io = new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.08});
+  els.forEach(e=>io.observe(e));
+})();
+</script>
+</body>
+</html>
